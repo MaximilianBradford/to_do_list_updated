@@ -1,41 +1,38 @@
 import React from 'react';
 import {
-    Pressable,
-    View,
-    Text,
-    ScrollView,
-  } from 'react-native';
+  Pressable,
+  View,
+  Text,
+  ScrollView,
+  StyleSheet
+} from 'react-native';
 
-export default function ToDoList() {
-<ScrollView>
-        <Pressable>
-          <View style={[styles.task, styles.completed]}>
-            <Text style={styles.taskText}>Gather Rabid beavers</Text>
+function ToDoList({ tasks }) {
+  return (
+    <ScrollView>
+      {tasks.map((task, index) => (
+        <Pressable key={index}>
+          <View style={[styles.task, task.completed && styles.completed]}>
+            <Text style={styles.taskText}>{task.name}</Text>
           </View>
         </Pressable>
-        <Pressable>
-          <View style={[styles.task]}>
-            <Text style={styles.taskText}>Create flimsy cage</Text>
-          </View>
-        </Pressable>
-        <Pressable>
-          <View style={[styles.task, styles.completed]}>
-            <Text style={styles.taskText}>Hang cage with beavers above door</Text>
-          </View>
-        </Pressable>
-</ScrollView>
+      ))}
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
-    task: {
-      padding: 10,
-      borderBottomWidth: 1,
-      borderColor: '#ccc',
-    },
-    completed: {
-      backgroundColor: '#e0e0e0',
-    },
-    taskText: {
-      fontSize: 16,
-    },
-    });
+  task: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+  },
+  completed: {
+    backgroundColor: '#e0e0e0',
+  },
+  taskText: {
+    fontSize: 16,
+  },
+});
+
+export default ToDoList;
